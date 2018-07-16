@@ -46,9 +46,9 @@
        console.log(name);
        console.log(recipeName);
        console.log(description);
-       document.getElementById('recipeName').insertAdjacentHTML('beforebegin', recipeName);
-       document.getElementById('name').insertAdjacentHTML('beforebegin', "Submitted By " + name);
-       document.getElementById('description').insertAdjacentHTML('beforebegin', description);
+       document.getElementById('recipeName').insertAdjacentHTML('beforeend', recipeName);
+       document.getElementById('name').insertAdjacentHTML('beforeend', "Submitted By " + name);
+       document.getElementById('description').insertAdjacentHTML('beforeend', description);
     }
    
   </script>
