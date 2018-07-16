@@ -1,0 +1,48 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>P4 Prototype</title>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'draw/vendor/bootstrap/css/bootstrap.min.css' %}">
+    <script type="text/javascript" src="{% static 'draw/vendor/jquery/jquery-3.3.1.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'draw/vendor/paper/paper-full.min.js' %}"></script>
+
+    <style type="text/css">
+    </style>
+
+</head>
+<body>
+  <h1> Process Select </h1>    
+  <form id = "myForm" onSubmit = 'return false'>
+    <input disabled = "disabled" id = "steplabel"> </input>
+    <input id = "response" type = "text" placeholder = "Wash the tomatoes..."> </input>
+    <input onClick = "appendToSteps()" type = "submit" value = "Add Step"></input> 
+  </form>
+  <div id = 'steps'>
+    <h2> Steps </h2>
+  </div>
+  <a href = "{% url 'processSelect' %}"> Next </a>
+
+  <script>
+    var count = 1; 
+    var form = document.getElementById('myForm');
+    resetTitle();
+ 
+    function resetTitle() {
+      document.getElementById('steplabel').style = "width: 70px; border: none;";
+      document.getElementById('steplabel').value = "Step " + count + ": ";
+    }
+    function appendToSteps() {
+      var response = document.getElementById('response').value;
+      var steps = document.getElementById('steps');
+      steps.insertAdjacentHTML('beforeend', "Step " + count + ": "+ response + "<br></br>");
+      count++;
+      form.reset();
+      resetTitle();
+    }  
+  </script>
+</body>
+</html>
