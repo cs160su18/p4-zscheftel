@@ -16,11 +16,41 @@
 </head>
 <body>
   <h1> Hodge Podge </h1>    
-  <h2> Recipes Under Review </h2>
-  <a href = "{% url 'ingredientSelect' %}"> Submit Recipe </a>
+  <div id = "recipes">
+      <h2> Recipes Under Review </h2>
+     <div id = "recipe">
+       <h4 id = "recipeName"> </h4>
+       <h6 id = "name"> </h6>
+       <p id = "description"> </p>
+    </div>
+  </div>
+  <a href = "{% url 'ingredientSelect' %}"> Submit Your Recipe! </a>
   
   <script>
-      var socket = new WebSocket('ws://p4-zscheftel-zscheftel981380.codeanyapp.com:8765/');
+    var path = window.location.pathname;
+    function getParameterByName(name, url) {
+      if (!url) url = window.location.href;
+      name = name.replace(/[\[\]]/g, '\\$&');
+      var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+        results = regex.exec(url);
+      if (!results) return null;
+      if (!results[2]) return '';
+      return decodeURIComponent(results[2].replace(/\+/g, ' '));
+    }
+    var name = getParameterByName('name'); // "lorem"
+    if (name == 'null') {
+          document.getElementById('recipeName').insertAdjacentHTML('beforebegin', "No recipes have been submitted yet");
+    } else {
+       var recipeName = getParameterByName('recipeName'); // "lorem"
+       var description = getParameterByName('description'); // "lorem"
+       console.log(name);
+       console.log(recipeName);
+       console.log(description);
+       document.getElementById('recipeName').insertAdjacentHTML('beforebegin', recipeName);
+       document.getElementById('name').insertAdjacentHTML('beforebegin', "Submitted By " + name);
+       document.getElementById('description').insertAdjacentHTML('beforebegin', description);
+    }
+   
   </script>
 </body>
 </html>
