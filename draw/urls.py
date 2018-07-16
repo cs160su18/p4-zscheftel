@@ -4,7 +4,8 @@ from django.conf.urls import url
 from . import views
 
 urlpatterns = [
-    url(r'^$', views.index, name='index'),
+    url('ingredientSelect', views.ingredientSelect, name='ingredientSelect'),
+    url(r'custom', views.custom, name='custom'),
     url(r'^(?P<room_name>[^/]+)/$', views.room, name='room'),
 ]
 
